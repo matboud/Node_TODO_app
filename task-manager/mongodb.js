@@ -1,12 +1,12 @@
 // exploring mongodb & beyond
 
-const { MongoClient } = require("mongodb");
-
 const { MongoClient, ObjectID } = require("mongodb");
 //MongoClient: to get access to the functions necessary to perform a CRUD operation
 
 const connectionURL = "mongodb://127.0.0.1:27017";
 const databaseName = "task-manager";
+
+const id = new ObjectID();
 
 MongoClient.connect(
   connectionURL,
@@ -59,10 +59,12 @@ MongoClient.connect(
     db.collection("tasks").insertMany(
       [
         {
+          _id: new ObjectID(), // to multiple use of ObjectID
           description: "describing task 1",
           completed: true,
         },
         {
+          _id: new ObjectID(),
           description: "describing task 2",
           completed: false,
         },
