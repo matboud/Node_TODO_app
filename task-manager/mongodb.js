@@ -56,25 +56,60 @@ MongoClient.connect(
     //   }
     // );
 
-    db.collection("tasks").insertMany(
-      [
-        {
-          _id: new ObjectID(), // to multiple use of ObjectID
-          description: "describing task 1",
-          completed: true,
-        },
-        {
-          _id: new ObjectID(),
-          description: "describing task 2",
-          completed: false,
-        },
-      ],
-      (error, result) => {
+    // db.collection("tasks").insertMany(
+    //   [
+    //     {
+    //       _id: new ObjectID(), // to multiple use of ObjectID
+    //       description: "describing task 1",
+    //       completed: true,
+    //     },
+    //     {
+    //       _id: new ObjectID(),
+    //       description: "describing task 2",
+    //       completed: false,
+    //     },
+    //   ],
+    //   (error, result) => {
+    //     if (error) {
+    //       return console.log("Unable to add tasks!", error);
+    //     }
+    //     console.log(result.ops);
+    //   }
+    // );
+
+    // reading data
+    // db.collection("users").findOne({age: 144}, (error, user)=>{
+    //   if(error){
+    //     return console.log("unable to fetch user")
+    //   }
+
+    //   console.log(user)
+    // })
+
+    // db.collection("users")
+    //   .find({ age: 26 })
+    //   .toArray((error, users) => {
+    //     console.log(users);
+    //   });
+
+    db.collection("tasks").findOne(
+      { _id: new ObjectID("6086de8b9d560922e693b757") },
+      (error, user) => {
         if (error) {
-          return console.log("Unable to add tasks!", error);
+          return console.log("Unable to fetch data");
         }
-        console.log(result.ops);
+        console.log(user);
       }
     );
+
+    db.collection("tasks")
+      .find({ completed: false })
+      .toArray((error, tasks) => {
+        if (error) {
+          return console.log(error);
+        }
+
+        console.log(tasks);
+      });
   }
 );
