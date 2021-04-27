@@ -92,24 +92,51 @@ MongoClient.connect(
     //     console.log(users);
     //   });
 
-    db.collection("tasks").findOne(
-      { _id: new ObjectID("6086de8b9d560922e693b757") },
-      (error, user) => {
-        if (error) {
-          return console.log("Unable to fetch data");
-        }
-        console.log(user);
-      }
-    );
+    // db.collection("tasks").findOne(
+    //   { _id: new ObjectID("6086de8b9d560922e693b757") },
+    //   (error, user) => {
+    //     if (error) {
+    //       return console.log("Unable to fetch data");
+    //     }
+    //     console.log(user);
+    //   }
+    // );
 
-    db.collection("tasks")
-      .find({ completed: false })
-      .toArray((error, tasks) => {
-        if (error) {
-          return console.log(error);
-        }
+    // db.collection("tasks")
+    //   .find({ completed: false })
+    //   .toArray((error, tasks) => {
+    //     if (error) {
+    //       return console.log(error);
+    //     }
 
-        console.log(tasks);
+    //     console.log(tasks);
+    //   });
+
+    // UPDATE
+    // db.collection("users").updateOne(
+    //   { _id: new ObjectID("6086d1ad9ab18c20df986d20") },
+    //   {
+    //     $set: {
+    //       name: "Med Amine Matboud",
+    //     },
+    //   }
+    // ).then((result) => {
+    //     console.log(result);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Unable to update document", error);
+    //   });
+
+    db.collection("users")
+      .updateOne(
+        { _id: new ObjectID("6086d5cc181c0f219481d52d") },
+        { $inc: { age: 1 } }
+      )
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log("Unable to update document", error);
       });
   }
 );
