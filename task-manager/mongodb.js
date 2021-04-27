@@ -139,15 +139,33 @@ MongoClient.connect(
     //     console.log("Unable to update document", error);
     //   });
 
+    // db.collection("tasks")
+    //   .updateMany(
+    //     {
+    //       completed: false,
+    //     },
+    //     {
+    //       $set: { completed: true },
+    //     }
+    //   )
+    //   .then((result) => {
+    //     console.log(result);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Unable to update document", error);
+    //   });
+
+    // db.collection("users")
+    //   .deleteMany({ age: 13 })
+    //   .then((result) => {
+    //     console.log(result);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Unable to update document", error);
+    //   });
+
     db.collection("tasks")
-      .updateMany(
-        {
-          completed: false,
-        },
-        {
-          $set: { completed: true },
-        }
-      )
+      .deleteOne({ description: "describing task 3" })
       .then((result) => {
         console.log(result);
       })
