@@ -127,10 +127,26 @@ MongoClient.connect(
     //     console.log("Unable to update document", error);
     //   });
 
-    db.collection("users")
-      .updateOne(
-        { _id: new ObjectID("6086d5cc181c0f219481d52d") },
-        { $inc: { age: 1 } }
+    // db.collection("users")
+    //   .updateOne(
+    //     { _id: new ObjectID("6086d5cc181c0f219481d52d") },
+    //     { $inc: { age: 1 } }
+    //   )
+    //   .then((result) => {
+    //     console.log(result);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Unable to update document", error);
+    //   });
+
+    db.collection("tasks")
+      .updateMany(
+        {
+          completed: false,
+        },
+        {
+          $set: { completed: true },
+        }
       )
       .then((result) => {
         console.log(result);
