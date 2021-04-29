@@ -16,14 +16,37 @@ const User = mongoose.model("User", {
   },
 });
 
-const me = new User({
-  name: "Matboud",
-  age: 26,
+// const me = new User({
+//   name: "Matboud",
+//   age: 26,
+// });
+
+// me.save()
+//   .then(() => {
+//     console.log(me);
+//   })
+//   .catch((error) => {
+//     console.log("Unable to sqve User model:", error);
+//   });
+
+const Task = mongoose.model("Task", {
+  description: {
+    type: String,
+  },
+  completed: {
+    type: Boolean,
+  },
 });
 
-me.save()
+const newTask = new Task({
+  description: "task number 1",
+  completed: false,
+});
+
+newTask
+  .save()
   .then(() => {
-    console.log(me);
+    console.log(newTask);
   })
   .catch((error) => {
     console.log("Unable to sqve User model:", error);
