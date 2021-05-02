@@ -1,7 +1,6 @@
 const express = require("express");
 require("./db/mongoose");
 
-
 const userRouter = require("./routers/user");
 const taskRouter = require("./routers/task");
 
@@ -16,17 +15,14 @@ app.listen(port, () => {
   console.log("Server ON on port: ", port);
 });
 
-const jwt = require("jsonwebtoken");
+const Task = require("./models/task");
+const User = require("./models/user");
 
-const func = async () => {
-  const token = jwt.sign({ _id: "abcd123" }, "creatingacooltaskmanagerapp", {
-    expiresIn: "7 days",
-  });
-  // console.log(token);
+const main = async () => {
+  const user = await User.findById('608e30a825dad311e8ce0c3f');
+  await user.populate('tasks').execPopulate();
 
-  const data = jwt.verify(token, "creatingacooltaskmanagerapp");
-
-  console.log("====>", data);
+  console.log(user.tasks);
 };
 
-func();
+main();
